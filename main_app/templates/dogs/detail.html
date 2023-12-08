@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1 class="is-size-1 py-3">Dog List</h1>
+<h1 class="is-size-1 py-3">Dog Details</h1>
 
-{% for dog in dogs %}
   <div class="card">
-    <a href="{% url 'detail' dog.id %}">
         <div class="card-content">
         <span class="is-size-3">{{ dog.name }}</span>
         <p>Breed: {{ dog.breed }}</p>
@@ -16,8 +14,6 @@
             <p>Age: Puppy</p>
         {% endif %}
         </div>
-    </a>
   </div>
-{% endfor %}
 
 {% endblock %}
