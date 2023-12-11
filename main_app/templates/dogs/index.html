@@ -4,7 +4,7 @@
 <h1 class="is-size-1 py-3">Dog List</h1>
 
 {% for dog in dogs %}
-  <div class="card">
+  <div class="card mg-large">
     <a href="{% url 'detail' dog.id %}">
         <div class="card-content">
         <span class="is-size-3">{{ dog.name }}</span>
