@@ -3,23 +3,58 @@
 
 <h1 class="is-size-1 py-3">Dog Details</h1>
 
-  <div class="card">
-        <div class="card-content">
-            <div class="content">
-            <span class="is-size-3 py-3">{{ dog.name }}</span>
-            <p class="py-2">Breed: {{ dog.breed }}</p>
-            <p>Description: {{ dog.description }}</p>
-            {% if dog.age > 0 %}
-                <p>Age: {{ dog.age }}</p>
-            {% else %}
-                <p>Age: Puppy</p>
-            {% endif %}
+    <div class="columns">
+        <div class="card column is-half">
+            <div class="card-content">
+                <div class="content">
+                <span class="is-size-3 py-3">{{ dog.name }}</span>
+                <p class="py-2">Breed: {{ dog.breed }}</p>
+                <p>Description: {{ dog.description }}</p>
+                {% if dog.age > 0 %}
+                    <p>Age: {{ dog.age }}</p>
+                {% else %}
+                    <p>Age: Puppy</p>
+                {% endif %}
+            </div>
+            </div>
+            <div class="card-footer">
+                <a  class="card-footer-item" href="{% url 'dogs_update' dog.id %}">Edit</a>
+                <a  class="card-footer-item" href="{% url 'dogs_delete' dog.id %}">Delete</a>
+            </div>
         </div>
+        <div class="column has-background-primary-light">
+            <form action="{% url 'add_feeding' dog.id %}" method="POST">
+                {% csrf_token %}
+                <div class="feeding-container">
+                    <label for="id_date">Date:</label>
+                    <input type="text" name="date" required id="id_date">
+                </div>
+                <div class="feeding-container">
+                    <label for="id_meal">Meal:</label>
+                    <select name="meal" id="id_meal">
+                        <option value="B" selected>Breakfast</option>
+                        <option value="L">Lunch</option>
+                        <option value="D">Dinner</option>
+                    </select>
+                </div>
+                <div>
+                    <input type="submit" class="btn" value="Add feeding">
+                </div>
+            </form>
+            <table class="striped">
+                <thead>
+                    <tr><th>Date</th><th>Meal</th></tr>
+                </thead>
+                <tbody>
+                {% for feeding in dog.feeding_set.all %}
+                    <tr>
+                    <td>{{ feeding.date }}</td>
+                    <td>{{ feeding.get_meal_display }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
-        <div class="card-footer">
-            <a  class="card-footer-item" href="{% url 'dogs_update' dog.id %}">Edit</a>
-            <a  class="card-footer-item" href="{% url 'dogs_delete' dog.id %}">Delete</a>
-        </div>
-  </div>
+    </div>
 
 {% endblock %}
