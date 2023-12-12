@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if object %}
+        <h1 class="is-size-1 py-3">Edit <span class="has-text-weight-bold">{{ object.name }}</span></h1>
+    {% else %}
+        <h1 class="is-size-1 py-3">Add toy</h1>
+    {% endif %}
+        <form action="" method="POST" >
+        {% csrf_token %}
+            <div class="field">
+                <div class="control">
+                    <label class="label" for="id_name">Name:</label>
+                    <input class="input"  type="text" name="name" maxlength="50" required id="id_name">
+                    <label class="label" for="id_colour">Colour:</label>
+                    <input class="input" type="text" name="colour" maxlength="20" required id="id_breed">
+                </div>
+            </div>
+        <input type="submit" value="Submit" class="button is-primary">
+        </form>
+
+        
+{% endblock %}

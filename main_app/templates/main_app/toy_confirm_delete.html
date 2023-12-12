@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1 class="is-size-1 py-3">Delete toy</h1>
+
+    <h4 class="subtitle is-4">Are you sure you want to delete <span class="has-text-weight-bold">{{ object.name }}</span>?</h4>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Yes" class="button is-primary">
+        <p>
+            <a class="py-5" href="{% url 'detail' toy.id%}">Cancel</a>
+        </p>
+    </form>
+
+{% endblock %}
