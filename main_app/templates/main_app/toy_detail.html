@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Toy Details</h1>
+<h1 class="is-size-1">Toy Details</h1>
 
 <div class="row">
   <div class="col s6 col-offset-3">
@@ -10,9 +10,9 @@
         <span class="card-title">{{ toy.name }}</span>
         <p>Colour: {{ toy.colour }}</p>
       </div>
-      <div class="card-action">
-        <a href="{% url 'toys_update' toy.id %}">Edit</a>
-        <a href="{% url 'toys_delete' toy.id %}">Delete</a>
+      <div class="card-footer">
+        <a class="card-footer-item" href="{% url 'toys_update' toy.id %}">Edit</a>
+        <a class="card-footer-item" href="{% url 'toys_delete' toy.id %}">Delete</a>
       </div>
     </div>
   </div>

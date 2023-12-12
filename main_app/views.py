@@ -66,7 +66,6 @@ class ToyCreate(CreateView):
     model = Toy
     fields = '__all__'
 
-
 class ToyDetail(DetailView):
   model = Toy
 
